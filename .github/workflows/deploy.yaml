@@ -1,0 +1,22 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    permissions:
+      deployments: write
+    environment: x
+    runs-on: ubuntu-22.04
+    steps:
+    - name: create deployment
+      id: create_deployment
+      uses: octokit/request-action@v2.x
+      with:
+        route: POST /repos/:repository/deployments
+        repository: ${{ github.repository }}
+        ref: main
+        environment: x
+        auto_merge: false
