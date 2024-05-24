@@ -9,4 +9,8 @@ jobs:
     environment: x
     runs-on: ubuntu-latest
     steps:
-      - run: 'true'
+      - id: hint
+        name: Print Status URLs
+        run: |
+          echo "API: ${{ github.api_url }}/${{ github.repository }}/commits/${{ github.sha }}/status"
+          echo "Web: ${{ github.server_url }}/${{ github.repository }}/commits/${{ github.sha }}"
